@@ -13,14 +13,16 @@ const UpdateProduct = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-    const [imagePreview, setImagePreview] = useState(null);  
+    const [imagePreview, setImagePreview] = useState(null);
     const [productData, setProductData] = useState({});
     const [categories, setCategories] = useState([])
     const [category, setCategory] = useState("");
+    const [imageFile, setImageFile] = useState(null);
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setImagePreview(URL.createObjectURL(file));
+            const imagePath = `/images/${file.name}`;
+            setImagePreview(imagePath);
         }
     };
     useEffect(() => {
@@ -62,35 +64,61 @@ const UpdateProduct = () => {
         fetchProduct();
     }, [id]);
 
+    // const onSubmit = async (data) => {
+    //     const updatedProduct = {
+    //         ...data,
+    //         description: imagePreview ? imagePreview : productData.description,
+    //     };
+    //     try {
+    //         if (token ) {
+    //             await updateProduct(id, updatedProduct);
+    //             Swal.fire({
+    //                 position: "top-end",
+    //                 icon: "success",
+    //                 title: "Product updated successfully!",
+    //                 showConfirmButton: false,
+    //                 timer: 1500
+    //             });
+    //             navigate("/products");
+    //         }
+    //         else {
+    //             Swal.fire({
+    //                 title: 'Session Expired',
+    //                 text: 'Your session has expired. Please log in again.',
+    //                 icon: 'warning',
+    //                 confirmButtonText: 'Log In'
+    //             }).then(() => {
+    //                 localStorage.removeItem('token');
+    //                 // localStorage.removeItem('tokenExpiration');
+    //                 window.location.href = '/login';
+    //             });
+    //         }
+    //     } catch (err) {
+    //         Swal.fire({
+    //             position: "top-end",
+    //             icon: "error",
+    //             title: "Error updating product",
+    //             showConfirmButton: false,
+    //             timer: 1500
+    //         });
+    //     }
+    // };
     const onSubmit = async (data) => {
         const updatedProduct = {
             ...data,
-            description: imagePreview ? imagePreview : productData.description,
+            description: imagePreview || productData.description, // שולח את הנתיב בלבד
         };
+
         try {
-            if (token ) {
-                await updateProduct(id, updatedProduct);
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Product updated successfully!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate("/products");
-            }
-            else {
-                Swal.fire({
-                    title: 'Session Expired',
-                    text: 'Your session has expired. Please log in again.',
-                    icon: 'warning',
-                    confirmButtonText: 'Log In'
-                }).then(() => {
-                    localStorage.removeItem('token');
-                    // localStorage.removeItem('tokenExpiration');
-                    window.location.href = '/login';
-                });
-            }
+            await updateProduct(id, updatedProduct);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Product updated successfully!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            navigate("/products");
         } catch (err) {
             Swal.fire({
                 position: "top-end",
@@ -101,7 +129,6 @@ const UpdateProduct = () => {
             });
         }
     };
-
     if (!productData) {
         return <div>Loading...</div>;
     }

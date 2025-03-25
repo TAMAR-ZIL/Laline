@@ -75,8 +75,8 @@ const Cart = () => {
       <input
         className="btn"
         type="button"
-        onClick={() => navigate("/CheckOut")}
-        value={"CheckOut"}
+        onClick={() => navigate("/checkOut")}
+        value={"checkOut"}
       />
     </div>
   );

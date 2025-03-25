@@ -13,7 +13,6 @@ const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const [expirationTime, setExpirationTime] = React.useState("");
-
   const {
     watch,
     register,
@@ -36,10 +35,13 @@ const SignUp = () => {
       });
       return;
     }
+    console.log("User Data before sending:", userData);
+
     addUser(userData)
       .then(async (res) => {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('user', JSON.stringify(res.data.user));
+        dispatch(logIn(res.data.user));
         try {
           const loginResponse = await login({
             userName: userData.userName,
@@ -49,7 +51,6 @@ const SignUp = () => {
           setExpirationTime(Date.now() + 3600000)
           dispatch(logIn(loginResponse.data.user));
           localStorage.setItem('tokenExpiration', JSON.stringify(expirationTime));
-
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -58,7 +59,6 @@ const SignUp = () => {
             timer: 1500
           });
           navigate("/products");
-
         } catch (err) {
           Swal.fire({
             icon: "error",
@@ -69,9 +69,7 @@ const SignUp = () => {
         }
       })
       .catch((err) => {
-        console.error("Error during signup:", err);
         if (err.response) {
-          console.log("Response Error:", err.response);
           Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -79,7 +77,6 @@ const SignUp = () => {
             footer: '<a href="#">Why do I have this issue?</a>'
           });
         } else {
-          console.log("Error without response:", err);
           Swal.fire({
             icon: "error",
             title: "Oops...",

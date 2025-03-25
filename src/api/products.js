@@ -38,8 +38,27 @@ export const getProductById = async (productId) => {
         throw new Error("Error fetching product");
     }
 };
+export const uploadImage = async (file) => {
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+        const response = await axios.post(`${baseUrl}/upload`, formData, {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "multipart/form-data",
+            },
+        });
+        return response.data.description; 
+    } catch (error) {
+        throw new Error("Error uploading image");
+    }
+};
+
 export const updateProduct = async (productId, productData) => {
     const token = localStorage.getItem("token");
+    console.log("Updated Product Data:", productData);
     try {
         return axios.put(`${baseUrl}/${productId}`, productData, {
             headers: {

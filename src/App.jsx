@@ -87,7 +87,7 @@ function App() {
             </Route>
             {!user && (<Route path='/SignUp' element={<SignUp />} />)}
             {!user && (<Route path='/logIn' element={<LogIn />} />)}
-            <Route path='CheckOut' element={<CheckOut />} />
+            <Route path='checkOut' element={<CheckOut />} />
             {user && user.role === 'ADMIN' && (<Route path='/AddProduct' element={<AddProduct />} />)}
             {user && user.role === 'ADMIN' && (<Route path='/products/:id' element={<UpdateProduct />} />)}
             {user && user.role === 'ADMIN' && (<Route path='AllOrders' element={<AllOrders />} />)}
