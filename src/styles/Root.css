@@ -1,0 +1,15 @@
+    .background-container  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: fill; 
+    background-image:linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("public/images/laline-style.jpg");
+    margin-top: 60px;
+    width: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+  
+ 

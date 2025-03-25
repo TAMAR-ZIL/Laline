@@ -1,0 +1,71 @@
+.container {
+    background-color: black;
+  }
+  
+  .appBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .link {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .link:hover {
+    color: gray;
+  }
+  
+  .logo {
+    height: 40px;
+    filter: grayscale(100%);
+  }
+  
+  .search-area {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .search-area input {
+    background: black;
+    color: white;
+    border: 1px solid white;
+    padding: 5px;
+    margin-left: 10px;
+  }
+  
+  .profile-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .profile-dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 150px;
+    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content .link {
+    display: block;
+    padding: 10px;
+    text-align: left;
+    color: white;
+  }
+  
+  .dropdown-content .link:hover {
+    background-color: gray;
+  }
+  

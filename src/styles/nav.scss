@@ -1,0 +1,55 @@
+
+.appBar {
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  z-index: 1000; 
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  border-bottom: 1px solid black;
+ 
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; 
+  border-bottom: black 2px;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  margin-left: 20px;
+  font-size: 16px;
+}
+.link:hover {
+  color: #a2a0a0; 
+}
+
+.Toolbar {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .link {
+    font-size: 14px; 
+  }
+}
+.all-links{
+  align-items: center;
+  justify-content: center;
+  margin: 1 auto; 
+}
+.laline-font{
+  margin-right: 10px;
+}
+.MuiIconButton-root .MuiSvgIcon-root.MuiShoppingCartIcon-root {
+  color: #ff6600 !important;
+}
+.MuiBadge-badge {
+  background-color: #000000 !important; 
+  color: #fff !important;
+}
