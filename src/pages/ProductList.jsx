@@ -33,6 +33,7 @@ const ProductList = () => {
   const [search, setSearch] = useState("");
   const [open, setOpen] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
+  let [isPending,start]=React.useTransition();
   const OpenProduct = (productId) => () => {
     setOpen(productId);
   };
@@ -57,7 +58,7 @@ const ProductList = () => {
   }, [showCart]);
 
   useEffect(() => {
-    setLoading(true);
+    start(() => {  setLoading(true);
     GetTotalProductsPages(category, search)
       .then((res) => {
         setTotalPages(res.data.totalPages);
@@ -70,7 +71,7 @@ const ProductList = () => {
       })
       .catch((err) => {
         setLoading(false);
-      });
+      });})
   }, [category, search, currentPage]);
 
   const changePage = (page) => {

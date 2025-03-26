@@ -13,7 +13,7 @@ import emailjs from "@emailjs/browser";
 const CheckOut = () => {
     const { handleSubmit, register, reset, formState: { errors, isValid } } = useForm();
     const navigate = useNavigate();
-    const user = useSelector((state)=>state.user.currentUser);
+    const user = useSelector((state) => state.user.currentUser);
     const dispatch = useDispatch();
     const items = useSelector(state => state.cart.cartArr);
     const price = useSelector(state => state.cart.totalSum);
@@ -26,10 +26,9 @@ const CheckOut = () => {
     }, [user, navigate]);
 
     const save = (data) => {
-        console.log(address);
         addOrder({
-            address:data.address,
-            email: user?.email ||"t0527199526@gmail.com",
+            address: data.address,
+            email: user?.email || "t0527199526@gmail.com",
             codeUser: user._id,
             products: items,
             price
@@ -37,32 +36,24 @@ const CheckOut = () => {
             .then(res => {
                 localStorage.removeItem("cart");
                 dispatch(clearCart());
-                console.log("SERVICE_ID:", import.meta.env.VITE_EMAILJS_SERVICE_ID);
-console.log("TEMPLATE_ID:", import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
-console.log("PUBLIC_KEY:", import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
-console.log(user);
-
-console.log("User Email:", user.email);
-
-
-emailjs.send(
-    import.meta.env.VITE_EMAILJS_SERVICE_ID, 
-    import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
-    {
-        email: user?.email, 
-        userName: user?.userName,
-        orderId: res._id,
-        items: items, 
-        total: price,
-    },
-    import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-)
-.then((response) => {
-    console.log("Email sent successfully:", response);
-})
-.catch((error) => {
-    console.error("Error sending email:", error);
-});
+                emailjs.send(
+                    import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                    import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                    {
+                        email: user?.email,
+                        userName: user?.userName,
+                        orderId: res._id,
+                        items: items,
+                        total: price,
+                    },
+                    import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+                )
+                    .then((response) => {
+                        console.log("Email sent successfully:", response);
+                    })
+                    .catch((error) => {
+                        console.error("Error sending email:", error);
+                    });
 
                 Swal.fire({
                     position: "top-end",
