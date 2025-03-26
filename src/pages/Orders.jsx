@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getOrdersByUserId } from "../api/orderService";
-import "../styles/orderHistory.css"
+import "../styles/OrderHistory.css"
 
 const Orders = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -9,7 +9,6 @@ const Orders = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const token = localStorage.getItem('token')
-  // const user=localStorage.getItem('user')
   useEffect(() => {
     if (!user) return;
     console.log(user._id);

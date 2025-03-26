@@ -1,8 +1,7 @@
-import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "../api/products"
 import { useEffect, useState } from "react";
 import * as React from 'react';
-import '../styles/one.css'
+import '../styles/One.css'
 
 const OneProduct = ({ id }) => {
   const [product, setProduct] = useState({});

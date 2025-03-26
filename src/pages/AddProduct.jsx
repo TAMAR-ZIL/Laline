@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { MenuItem } from "@mui/material";
 import Select from "@mui/material/Select";
-import "../styles/addProduct.css"
+import "../styles/AddProduct.css"
 
 const AddProduct = () => {
   const currentUser = useSelector((state) => state.user.currentUser);

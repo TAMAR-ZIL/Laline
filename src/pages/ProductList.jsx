@@ -1,17 +1,17 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { GetAllProducts, GetTotalProductsPages, getCategories,deleteProduct } from "../api/products.js";
+import { GetAllProducts, GetTotalProductsPages, getCategories, deleteProduct } from "../api/products.js";
 import { Outlet, useNavigate } from "react-router-dom";
 import Cart from "./Cart.jsx";
 import useCart from "../hooks/useCart.js";
-import '../styles/list.scss';
+import '../styles/List.css';
 import { Pagination } from "@mui/material";
 import { MenuItem } from "@mui/material";
 import Drawer from '@mui/material/Drawer';
 import Select from "@mui/material/Select";
 import { useSelector } from "react-redux";
 import OneProduct from "./OneProduct.jsx";
-import '../styles/one.css'
+import '../styles/One.css'
 import Search from "../components/Search.jsx";
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
@@ -33,7 +33,7 @@ const ProductList = () => {
   const [search, setSearch] = useState("");
   const [open, setOpen] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
-  let [isPending,start]=React.useTransition();
+  let [isPending, start] = React.useTransition();
   const OpenProduct = (productId) => () => {
     setOpen(productId);
   };
@@ -58,20 +58,22 @@ const ProductList = () => {
   }, [showCart]);
 
   useEffect(() => {
-    start(() => {  setLoading(true);
-    GetTotalProductsPages(category, search)
-      .then((res) => {
-        setTotalPages(res.data.totalPages);
-      })
-      .catch((err) => console.error(err));
-    GetAllProducts(currentPage, category, search)
-      .then((res) => {
-        setDisplayedProducts(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-      });})
+    start(() => {
+      setLoading(true);
+      GetTotalProductsPages(category, search)
+        .then((res) => {
+          setTotalPages(res.data.totalPages);
+        })
+        .catch((err) => console.error(err));
+      GetAllProducts(currentPage, category, search)
+        .then((res) => {
+          setDisplayedProducts(res.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+        });
+    })
   }, [category, search, currentPage]);
 
   const changePage = (page) => {

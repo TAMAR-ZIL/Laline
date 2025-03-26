@@ -5,11 +5,10 @@ import { getProductById, updateProduct, getCategories } from "../api/products";
 import Swal from "sweetalert2";
 import { MenuItem } from "@mui/material";
 import Select from "@mui/material/Select";
-import "../styles/updateProduct.css"
+import "../styles/UpdateProduct.css"
 
 const UpdateProduct = () => {
     const token = localStorage.getItem("token");
-    // const expirationTime = localStorage.getItem('tokenExpiration');
     const { id } = useParams();
     const navigate = useNavigate();
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();

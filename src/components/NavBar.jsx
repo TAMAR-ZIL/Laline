@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
-import '../styles/nav.scss'
+import '../styles/Nav.css'
 import Profile from '../components/Profile'
 import { useSelector, useDispatch } from 'react-redux';
 import CostomizedBadges from '../components/CostomizedBadges'

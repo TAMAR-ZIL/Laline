@@ -7,7 +7,7 @@ import { clearCart } from "../features/cartSlice";
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Swal from "sweetalert2";
-import '../styles/checkout.scss'
+import '../styles/Checkout.css'
 import emailjs from "@emailjs/browser";
 
 const CheckOut = () => {

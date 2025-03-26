@@ -42,7 +42,7 @@
     cursor: pointer;
     transition: 0.3s;
 }
-// .order-details {
+/* // .order-details {
 //     font-family: 'Arial', sans-serif;
 //     background-color: #fff; 
 //     color: #000; 
@@ -57,7 +57,7 @@
 //     right: 20px;
 //     max-height: 80vh; 
 //     overflow-y: auto; 
-// }
+// } */
 
 .order-details div {
     background-color: #fff; 

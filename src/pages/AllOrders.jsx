@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAllOrders } from "../api/orderService"
 import { useSelector } from "react-redux"
-import "../styles/orderHistory.css"
+import "../styles/OrderHistory.css"
 const AllOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);

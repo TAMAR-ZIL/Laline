@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import "../styles/user.css"
+import "../styles/User.css"
 import { getAllUsers } from "../api/userService"
 const AllUsers = () => {
   const [users, setUsers] = useState([])
