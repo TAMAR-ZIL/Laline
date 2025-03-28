@@ -6,14 +6,24 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import { login } from "../api/userService.js";
 import Swal from "sweetalert2";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const LogIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: "onBlur" });
+  const [captchaToken, setCaptchaToken] = React.useState("");
   const onSubmit = async (data) => {
+    if (!captchaToken) {
+      Swal.fire({
+        icon: "warning",
+        title: "אימות נכשל",
+        text: "אנא אמת שאתה לא רובוט",
+      });
+      return;
+    }
     try {
-      const res = await login({ userName: data.userName, password: data.password });
+      const res = await login({ userName: data.userName, password: data.password ,captchaToken });
 
       localStorage.setItem("token", res.data.token);
       Swal.fire({
@@ -45,7 +55,10 @@ const LogIn = () => {
         <label className="lbl" htmlFor="password">סיסמא</label>
         {errors.password && <Stack sx={{ width: '100%' }} spacing={2}><Alert variant="outlined" severity="error">{errors.password.message}</Alert></Stack>}
         <input className="npt" id="password" type="password" {...register("password", { required: "חובה להכניס סיסמא", minLength: { value: 6, message: "סיסמא צריכה להיות לפחות 6 תווים" } })} />
-
+        <ReCAPTCHA
+          sitekey="6Le0rwIrAAAAAC3f_gaBADFJFvL0j1PdH4RVreMV"
+          onChange={(token) => setCaptchaToken(token)}
+        />
         <input className="btn" type="submit" disabled={!isValid} value="התחבר" />
       </form>
     </>

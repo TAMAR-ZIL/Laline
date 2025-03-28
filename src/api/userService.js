@@ -30,6 +30,7 @@ export const login = async (data) => {
         const res = await axios.post(`${baseUrl}/login`, {
             userName: data.userName,
             password: data.password,
+            captchaToken: data.captchaToken,
         }, {
             headers: {
                 "Content-Type": "application/json"
