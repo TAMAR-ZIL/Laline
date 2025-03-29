@@ -1,6 +1,6 @@
 import useCart from "../hooks/useCart";
 import { useNavigate, useLocation } from "react-router-dom";
-import "../styles/Cart.css";
+import "../styles/Carts.css";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
