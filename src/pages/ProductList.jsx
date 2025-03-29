@@ -11,7 +11,7 @@ import Drawer from '@mui/material/Drawer';
 import Select from "@mui/material/Select";
 import { useSelector } from "react-redux";
 import OneProduct from "./OneProduct.jsx";
-import '../styles/One.css'
+import '../styles/OneProduct.css'
 import Search from "../components/Search.jsx";
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';

@@ -1,7 +1,7 @@
 import { getProductById } from "../api/products"
 import { useEffect, useState } from "react";
 import * as React from 'react';
-import '../styles/One.css'
+import '../styles/OneProduct.css'
 
 const OneProduct = ({ id }) => {
   const [product, setProduct] = useState({});
